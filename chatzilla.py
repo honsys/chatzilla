@@ -1,3 +1,4 @@
+import os
 from gevent import monkey
 from flask import Flask, Response, render_template, request
 from socketio import socketio_manage
@@ -9,8 +10,7 @@ monkey.patch_all()
 
 application = Flask(__name__)
 application.debug = True
-application.config['PORT'] = 5000
-
+application.config['PORT'] = flaskport = int(os.environ.get('FLASKPORT', 9901))
 
 class ChatNamespace(BaseNamespace, BroadcastMixin):
     
